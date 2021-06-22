@@ -134,3 +134,51 @@ function meeting(x, need) {
 
     return took;
 }
+
+/* Detailed rules
+The resulting expression is made of components like 4 seconds, 1 year, etc. In general, a positive integer and one of the valid units of time, separated by a space. The unit of time is used in plural if the integer is greater than 1.
+
+The components are separated by a comma and a space (", "). Except the last component, which is separated by " and ", just like it would be written in English.
+
+A more significant units of time will occur before than a least significant one. Therefore, 1 second and 1 year is not correct, but 1 year and 1 second is.
+
+Different components have different unit of times. So there is not repeated units like in 5 seconds and 1 second.
+
+A component will not appear at all if its value happens to be zero. Hence, 1 minute and 0 seconds is not valid, but it should be just 1 minute.
+
+A unit of time must be used "as much as possible". It means that the function should not return 61 seconds, but 1 minute and 1 second instead. Formally, the duration specified by of a component must not be greater than any valid more significant unit of time. */
+
+function formatDuration(seconds) {
+    if (seconds === 0) return 'now';
+    const years = Math.floor(seconds / (86400 * 365));
+    const days = Math.floor(seconds % (86400 * 365) / 86400);
+    const hours = Math.floor(((seconds % (86400 * 365)) % 86400) / 3600);
+    const minutes = Math.floor(((seconds % (86400 * 365)) % 86400) % 3600 / 60);
+    const second = (((seconds % (86400 * 365)) % 86400) % 3600) % 60;
+
+    const isYears = () => (years ? years + " year" + (years === 1 ? ', ' : 's, ') : '');
+
+    const isDays = () => (days ? days + " day" + (days === 1 ? ', ' : 's, ') : '');
+
+    const isHours = () => {
+        if (isMinutes().charAt(0) === 'a') {
+            return (hours ? hours + " hour" + (hours === 1 ? ' ' : 's ') : '');
+        }
+        if (second === 0 && minutes === 0) {
+            return (hours ? hours + " hour" + (hours === 1 ? '' : 's') : '');
+        }
+        return (hours ? hours + " hour" + (hours === 1 ? ', ' : 's, ') : '');
+    };
+
+
+    const isMinutes = () => {
+        if (second === 0 && days !== 0) {
+            return 'and ' + (minutes ? minutes + " minute" + (minutes === 1 ? '' : 's') : '');
+        }
+        return (minutes ? minutes + " minute" + (minutes === 1 ? '' : 's') : '');
+    }
+    const isSeconds = () => (second ? (((seconds > 60) ? ' and ' + second + " second" : +second + " second") + (second === 1 ? '' : 's')) : '');
+
+
+    return isYears() + isDays() + isHours() + isMinutes() + isSeconds()
+}
