@@ -182,3 +182,10 @@ function formatDuration(seconds) {
 
     return isYears() + isDays() + isHours() + isMinutes() + isSeconds()
 }
+
+/* In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number. */
+
+function highAndLow(numbers) {
+    const num = numbers.split(' ');
+    return `${Math.max(...num)} ${Math.min(...num)}`
+}
