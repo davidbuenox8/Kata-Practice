@@ -189,3 +189,16 @@ function highAndLow(numbers) {
     const num = numbers.split(' ');
     return `${Math.max(...num)} ${Math.min(...num)}`
 }
+
+/* Create a function that returns a christmas tree of the correct height. */
+
+function christmasTree(height) {
+    let tree = '';
+    for (var i = 0; i < height; i++) {
+        var stars = '*'.repeat(2 * i + 1);
+        var spacesBefore = ' '.repeat(height - i - 1);
+        i === 0 ? tree += `${spacesBefore + stars + spacesBefore}`
+            : tree += `\n${spacesBefore + stars + spacesBefore}`
+    }
+    return tree
+}
