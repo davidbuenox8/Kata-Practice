@@ -202,3 +202,17 @@ function christmasTree(height) {
     }
     return tree
 }
+/* Please write a function that will take a string as input and return a hash. 
+The string will be formatted as such.
+ The key will always be a symbol and the value will always be an integer. */
+
+function strToHash(str) {
+    if (str === '') return {};
+    let hash = {}
+    const strArr = str.split(',').map(x => x.trim().split('='));
+    for (let value of strArr) {
+
+        hash[value[0]] = parseInt(value[1])
+    }
+    return hash
+}
