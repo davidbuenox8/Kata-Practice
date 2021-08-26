@@ -49,3 +49,16 @@ function sumPairs(ints, s) {
   let pairsKeys = Math.min(parseInt(Object.keys(pairs)));
   return pairs[pairsKeys] || undefined;
 }
+
+//Find the only number that repeats an odd number of times
+function findOdd(A) {
+  let numbersRepetition = {};
+  for (let num of A) {
+    numbersRepetition[num]
+      ? (numbersRepetition[num] += 1)
+      : (numbersRepetition[num] = 1);
+  }
+  for (let odd in numbersRepetition) {
+    if (numbersRepetition[odd] % 2 !== 0) return parseInt(odd);
+  }
+}
