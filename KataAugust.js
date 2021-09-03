@@ -62,3 +62,15 @@ function findOdd(A) {
     if (numbersRepetition[odd] % 2 !== 0) return parseInt(odd);
   }
 }
+
+//is the string alphanumeric ?
+function alphanumeric(string) {
+  //your code here
+  if (string.length === 0 || string.split(' ').length >= 2) {
+    return false;
+  }
+  if (/^[a-z0-9]+$/i.test(string)) {
+    return true;
+  }
+  return false;
+}
