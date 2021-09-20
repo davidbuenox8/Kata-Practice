@@ -35,3 +35,20 @@ function likes(names) {
   else
     return `${names[0]}, ${names[1]} and ${names.length - 2} others like this`;
 }
+
+//getaway Amazon assessment
+function droppedRequest(timeRequest) {
+  let n = timeRequest.length;
+  let notDropped = 0;
+
+  for (let i = 0; i < n; i++) {
+    if (i > 2 && timeRequest[i] == timeRequest[i - 3]) {
+      notDropped += 1;
+    } else if (i > 9 && timeRequest[i] - timeRequest[i - 10] < 10) {
+      notDropped += 1;
+    } else if (i > 59 && timeRequest[i] - timeRequest[i - 60] < 60) {
+      notDropped += 1;
+    }
+  }
+  return notDropped;
+}
