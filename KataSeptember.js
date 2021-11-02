@@ -52,3 +52,16 @@ function droppedRequest(timeRequest) {
   }
   return notDropped;
 }
+
+//get a pair which sum matches the parameter given
+
+function getPair(numbers, result) {
+  for (let i = 0; i < numbers.length; i++) {
+    for (let j = i + 1; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] === result) {
+        return [numbers[i], numbers[j]];
+      }
+    }
+  }
+  return undefined;
+}
