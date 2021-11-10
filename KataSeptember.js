@@ -65,3 +65,21 @@ function getPair(numbers, result) {
   }
   return undefined;
 }
+
+//get the biggest sum of a contigous subsequence
+function maxSequence(arr) {
+  let maxSum = 0;
+  let currentSum = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    //cumulating answers to the top
+
+    //compare currentSum add current number
+    //with current number and store the maximum value
+    currentSum = Math.max(arr[i], currentSum + arr[i]);
+
+    //compare maxSum with currentSum and store the greater value
+    maxSum = Math.max(currentSum, maxSum);
+  }
+  return maxSum;
+}
